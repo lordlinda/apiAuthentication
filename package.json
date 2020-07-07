@@ -1,0 +1,12 @@
+{
+  "name": "apiauth",
+  "version": "1.0.0",
+  "description": "api authentication app",
+  "main": "server.js",
+  "scripts": {
+  	"start":"node server",
+  	"dev":"nodemon server"
+  },
+  "author": "lord",
+  "license": "ISC"
+}
