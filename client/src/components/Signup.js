@@ -3,7 +3,7 @@ import {reduxForm,Field} from 'redux-form'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 import GoogleLogin from 'react-google-login'
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react-facebook-login';
 
 import  CustomInput from './Custominput.js'
 //this means import all action
@@ -139,5 +139,4 @@ function mapStateToProps(state){
 export default compose(
 	reduxForm({form:'signup'}),
 	connect(mapStateToProps,actions)
-	)
-(Signup)
+	)(Signup)

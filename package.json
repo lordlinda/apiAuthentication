@@ -28,5 +28,8 @@
     "passport-jwt": "*",
     "passport-local": "*",
     "passport-token-google2": "^0.1.4"
+  },
+   "engines": {
+    "node": "8.10.0"
   }
 }
