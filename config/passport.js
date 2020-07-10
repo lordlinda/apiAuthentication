@@ -1,13 +1,14 @@
 const JwtStrategy = require('passport-jwt').Strategy
 const LocalStrategy  = require('passport-local').Strategy
-var GooglePlusTokenStrategy = require('passport-google-plus-token');
+const FacebookTokenStrategy = require('passport-facebook-token');
+const GoogleTokenStrategy = require('passport-google-token').Strategy
 
 
 const {ExtractJwt} = require('passport-jwt')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 
-const {JWT_SECRET,CLIENT_ID,CLIENT_SECRET} = require('../config/index.js')
+const {JWT_SECRET,CLIENT_ID,CLIENT_SECRET,APP_SECRET,APP_ID} = require('../config/index.js')
 const User = require('../models/User.js')
 //JSON WEB TOKEN STRATEGY
 
@@ -86,7 +87,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-passport.use('googleToken',new GooglePlusTokenStrategy({
+passport.use(new GoogleTokenStrategy({
     clientID: CLIENT_ID,
     clientSecret:CLIENT_SECRET,
     passReqToCallback: true
@@ -130,3 +131,41 @@ passport.use('googleToken',new GooglePlusTokenStrategy({
   })
 
 }));
+//FACEBOOK STRATEGY
+
+passport.use('facebookToken',new FacebookTokenStrategy({
+  //we get the app id and secret from the config file
+    clientID: APP_ID,
+    clientSecret: APP_SECRET,
+  }, function(accessToken, refreshToken, profile, done) {
+    //check if we have the user in our database using  facebook id
+    User.findOne({'facebook.id':profile.id})
+    //if we do we return the user which will be stored as req.user
+    .then(user=>{
+      if(user){
+        return done(null,user)
+      }
+    //if the user doent exist we create new user
+
+      let newUser = new User({
+        methods:'facebook',
+        facebook:{
+          id:profile.id,
+          email:profile.emails[0].value
+        }
+      })
+
+      //the  we save our user
+      newUser.save()
+      .then(user=>{
+        //after saving the user we have to return the user
+        //user will be stored in req.user
+        return done(null,user)
+      }).catch(err=>{
+        return done(null,false,err.message)
+      })
+    }).catch(err=>{
+      return done(null,false,err.message)
+    })
+  }
+));

@@ -53,7 +53,7 @@ module.exports  ={
 	   //and send it back to the client
 	   .then(user=>{
 		const token =signToken(user)
-		res.status(200).json(token)
+		res.status(200).json({token})
 	   })//5.if credentials not valid we do not send a signed token and instaed send
 	  //an error ,sg ot the client.
 	   .catch(err=>{
@@ -75,12 +75,25 @@ module.exports  ={
 	//@description      user access protected resource
 	secret:(req,res)=>{
 		console.log('secret')
+		res.json({secret:"resource"})
 	},
 	//@route          users/auth/google
     //@description      logging in using google
     //this post route only takes in the access_token from the client
 	googleOAuth:(req,res)=>{
 	//1.generate a token
+	//2.returns jwt to the client
+    //whwn we login using passport we can now access the user object from req.user
+    const user = req.user
+    const token  = signToken(user)
+    res.status(200).json({token})
+	},
+	//@route          users/auth/facebook
+  //@description      logging in using facebook
+  //this post route only takes in the access_token from the client
+	facebookOAuth:(req,res)=>{
+	//1.generate a token
+	//2.returns jwt to the client
     //whwn we login using passport we can now access the user object from req.user
     const user = req.user
     const token  = signToken(user)

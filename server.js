@@ -1,6 +1,8 @@
 //importing third  party  models
 const express = require('express')
 const  bodyParser = require('body-parser')
+const cors = require('cors')
+
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
@@ -15,6 +17,8 @@ db.once('open',()=> console.log('connected to mongodb successfully'))
 
 //Init  App
 const app = express();
+//as soon as you initalise
+app.use(cors())
 
 
 //Middleware

@@ -31,7 +31,12 @@ router.get('/secret',passport.authenticate('jwt',{session:false}),UserController
 //@route          users/auth/google
 //@description      logging in using google
 //this post route only takes in the access_token from the client
-router.post('/auth/google',passport.authenticate('googleToken',{session:false}),UserControllers.googleOAuth)
+router.post('/auth/google',passport.authenticate('google-token',{session:false}),UserControllers.googleOAuth)
+
+//@route          users/auth/facebook
+//@description      logging in using facebook
+//this post route only takes in the access_token from the client
+router.post('/auth/facebook',passport.authenticate('facebookToken',{session:false}),UserControllers.facebookOAuth)
 
 
 
