@@ -70,7 +70,7 @@ export const signIn=(data)=>{
 
 export const oauthGoogle =(data)=>{
 	return async dispatch=>{
-		console.log(data)
+		//console.log(data)
 		await axios.post('http://localhost:5000/users/auth/google',{
 			access_token:data
 		}).then(res=>{
@@ -91,7 +91,7 @@ export const oauthGoogle =(data)=>{
 
 export const oauthFacebook =(data)=>{
 	return async dispatch=>{
-		console.log(data)
+		//console.log(data)
 		await axios.post('http://localhost:5000/users/auth/facebook',{
 			access_token:data
 		}).then(res=>{
@@ -112,7 +112,7 @@ export const oauthFacebook =(data)=>{
 
 export const getSecret=()=>{
 	return async dispatch=>{
-		console.log('action')
+		//console.log('action')
 		await axios.get('http://localhost:5000/users/secret')
 		.then(res=>{
 			console.log(res)

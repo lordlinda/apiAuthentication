@@ -25,7 +25,8 @@ app.use(cors())
 //for middleware we  always use  app.use
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-
+//serve static files
+app.use(express.static('client/build'))
 
 //Routes
 app.use('/users',require('./api/routes.js'))

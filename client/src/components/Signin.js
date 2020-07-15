@@ -139,5 +139,4 @@ function mapStateToProps(state){
 export default compose(
 	reduxForm({form:'signin'}),
 	connect(mapStateToProps,actions)
-	)
-(Signin)
+	)(Signin)

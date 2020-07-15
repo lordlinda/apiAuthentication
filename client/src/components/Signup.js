@@ -3,7 +3,7 @@ import {reduxForm,Field} from 'redux-form'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 import GoogleLogin from 'react-google-login'
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react-facebook-login';
 
 import  CustomInput from './Custominput.js'
 //this means import all action
@@ -19,21 +19,21 @@ constructor(props){
 
 	async onSubmit(formData){
 		console.log('onsubmit got called')
-		console.log(formData)
+		//console.log(formData)
 		//we need to call some actioncreator
 		await this.props.signUp(formData)
 		// console.log(this.props.errorMessage)
 //if we successfully signup or sign in
 //we are redirected to the dashboard
 		if(!this.props.errorMessage){
-         console.log(this.props.errorMessage)
+         //console.log(this.props.errorMessage)
 	     this.props.history.push('/dashboard')
 		}
 
 	}
 
 	async responseGoogle(res){
-     console.log(res)
+     //console.log(res)
      await this.props.oauthGoogle(res.accessToken)
 
      //if we successfully signup or sign in
@@ -43,7 +43,7 @@ constructor(props){
 		}
 	}
 	async responseFacebook(res){
-      console.log(res)
+      //console.log(res)
       await this.props.oauthFacebook(res.accessToken)
 
 
@@ -139,5 +139,4 @@ function mapStateToProps(state){
 export default compose(
 	reduxForm({form:'signup'}),
 	connect(mapStateToProps,actions)
-	)
-(Signup)
+	)(Signup)
