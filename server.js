@@ -7,7 +7,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost/apiauth')
+mongoose.connect('mongodb://localhost/apiauth'|| 'mongodb+srv://lord:phaneroo@5@cluster0.s76t6.mongodb.net/pnote?retryWrites=true&w=majority')
 //intsance  of connection
 const db = mongoose.connection
 

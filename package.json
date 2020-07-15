@@ -1,6 +1,9 @@
 {
   "name": "apiauth",
   "version": "1.0.0",
+   "engines": {
+    "node": "v8.10.0"
+  }
   "description": "api authentication app",
   "main": "server.js",
   "scripts": {
@@ -21,12 +24,12 @@
     "jsonwebtoken": "*",
     "mongoose": "*",
     "morgan": "*",
-    "nodemon": "*",
+    "nodemon": "^2.0.4",
+    "passport": "*",
     "passport-facebook-token": "*",
     "passport-google-token": "^0.1.2",
     "passport-jwt": "*",
     "passport-local": "*",
-    "passport-token-google2": "^0.1.4",
-    "passport":"*"
+    "passport-token-google2": "^0.1.4"
   }
 }
